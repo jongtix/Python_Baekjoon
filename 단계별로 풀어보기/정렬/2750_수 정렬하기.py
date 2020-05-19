@@ -23,8 +23,28 @@
 
 
 N = int(input())
-comp = list()
-for n in range(N):
-    stand = int(input())
-    for idx in range(len(comp)):
-        if stand > comp[idx]:comp.insert(stand)
+result = list()
+for _ in range(N):
+    result.append(int(input()))
+# print(result)
+
+# 삽입 정렬
+for start in range(1, len(result)):
+    for idx in range(start, 0, -1):
+        if result[idx - 1] > result[idx]:
+            result[idx - 1], result[idx] = result[idx], result[idx - 1]
+    # print(result)
+
+# 버블 정렬
+# for start in range(len(result) - 1):
+#     for idx in range(len(result) - start - 1):
+#         if result[idx] > result[idx + 1]:
+#             result[idx], result[idx + 1] = result[idx + 1], result[idx]
+#     print(result)
+
+# for i in range(len(result)):
+#     for j in range(len(result)):
+#         if result[i] < result[j]:
+#             result[i], result[j] = result[j], result[i]
+
+print('\n'.join(map(str, result)))
