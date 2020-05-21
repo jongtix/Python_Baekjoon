@@ -22,14 +22,33 @@
 # 3 4
 
 
+# N = int(input())
+# x_point = list()
+# y_point = list()
+# for _ in range(N):
+#     x, y = input().split()
+#     x_point.append(x)
+#     y_point.append(y)
+#
+# for i in range(N - 1):
+#     for j in range(i, N):
+#         if x_point[i] > x_point[j]:
+#             x_point[i], x_point[j] = x_point[j], x_point[i]
+#             y_point[i], y_point[j] = y_point[j], y_point[i]
+#         elif x_point[i] == x_point[j]:
+#             if y_point[i] > y_point[j]:
+#                 x_point[i], x_point[j] = x_point[j], x_point[j]
+#                 y_point[i], y_point[j] = y_point[j], y_point[i]
+#
+# for idx in range(N):
+#     print(x_point[idx], y_point[idx])
+
 N = int(input())
 point_list = [(tuple(map(int, input().split()))) for _ in range(N)]
-for i in range(N - 1):
-    for j in range(i, N):
-        if point_list[i][0] > point_list[j][0]:
-            point_list[i], point_list[j] = point_list[j], point_list[i]
-        elif point_list[i][0] == point_list[j][0]:
-            if point_list[i][1] > point_list[j][1]:
-                point_list[i], point_list[j] = point_list[j], point_list[i]
+point_list = sorted(point_list, key=lambda k:(k[0], k[1]))
+# for i in range(N - 1):
+#     for j in range(i, N):
+#         if point_list[i][1] > point_list[j][1]:
+#             point_list[i], point_list[j] = point_list[j], point_list[i]
 for x in point_list:
     print(x[0], x[1])
