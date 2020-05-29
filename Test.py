@@ -1,9 +1,9 @@
-import copy
+import copy, operator
 
-v_list = [[False for _ in range(9)] for _ in range(9)]
-for idx, v_x in enumerate(v_list):
-    for idy, value in enumerate(v_x):
-        print(idx, idy, value)
+# v_list = [[False for _ in range(9)] for _ in range(9)]
+# for idx, v_x in enumerate(v_list):
+#     for idy, value in enumerate(v_x):
+#         print(idx, idy, value)
 
 # old_list = [1, 2, 3]
 # new_list1 = old_list
@@ -18,3 +18,5 @@ for idx, v_x in enumerate(v_list):
 # print(new_list3)
 # print(new_list4)
 # print(new_list5)
+
+print(tuple(map(operator.add, (1, 1), (2, 3))))
