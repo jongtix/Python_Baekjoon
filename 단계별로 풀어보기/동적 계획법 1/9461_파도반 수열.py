@@ -21,6 +21,7 @@
 # 16
 
 
+# 시간 초과 실패
 def P(N):
     cache = [1, 1, 1, 2, 2, 3, 4, 5, 7, 9] + [0 for _ in range(90)]
     if cache[N - 1] > 0:
@@ -32,3 +33,4 @@ def P(N):
 
 for _ in range(int(input())):
     print(P(int(input())))
+# 시간 초과 실패
