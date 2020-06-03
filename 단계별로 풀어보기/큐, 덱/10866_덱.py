@@ -48,18 +48,40 @@
 # -1
 # 0
 # 3
-# from collections import deque
-# import sys
-#
-# que = deque()
-# for _ in range(int(sys.stdin.readline())):
-#     command = sys.stdin.readline().split()
-#     if command[0] == 'push_back':
-#         que.append(int(command[1]))
-#     elif command[0] == 'push_back':
-#     elif command[0] == 'pop_front':
-#     elif command[0] == 'pop_back':
-#     elif command[0] == 'size':
-#     elif command[0] == 'empty':
-#     elif command[0] == 'front':
-#     elif command[0] == 'back':
+from collections import deque
+import sys
+
+que = deque()
+for _ in range(int(sys.stdin.readline())):
+    command = sys.stdin.readline().split()
+    if command[0] == 'push_front':
+        que.appendleft(int(command[1]))
+    elif command[0] == 'push_back':
+        que.append(int(command[1]))
+    elif command[0] == 'pop_front':
+        if que:
+            print(que.popleft())
+        else:
+            print(-1)
+    elif command[0] == 'pop_back':
+        if que:
+            print(que.pop())
+        else:
+            print(-1)
+    elif command[0] == 'size':
+        print(len(que))
+    elif command[0] == 'empty':
+        if que:
+            print(0)
+        else:
+            print(1)
+    elif command[0] == 'front':
+        if que:
+            print(que[0])
+        else:
+            print(-1)
+    elif command[0] == 'back':
+        if que:
+            print(que[-1])
+        else:
+            print(-1)
