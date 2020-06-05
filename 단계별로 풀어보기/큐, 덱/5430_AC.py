@@ -46,29 +46,90 @@ import sys
 
 for _ in range(int(sys.stdin.readline())):
     command = sys.stdin.readline()[:-1]
+    # idx = 0
+    # pre_command = ''
+    # while len(command) > 1 and idx < len(command):
+    #     if pre_command == 'R' and command[idx] == 'R':
+    #         command = command[:idx - 1] + command[idx + 1:]
+    #         pre_command = ''
+    #         idx -= 1
+    #     else:
+    #         pre_command = command[idx]
+    #         idx += 1
+    # if idx < len(command) and pre_command == 'R' and command[idx] == 'R':
+    #     command = command[:idx - 1]
+
     n = int(sys.stdin.readline())
     AC_list = []
     list_num = sys.stdin.readline()[1:-2]
     if len(list_num) > 0:
         AC_list = list(map(int, list_num.split(',')))
     que = deque(AC_list)
-    flag = True
-    idx = 0
-    while idx < len(command):
-        com = command[idx]
-        if idx + 1 < len(command) and com == 'R' and command[idx + 1] == 'R':
-            idx += 1
-            continue
 
+    left, right = 0, n - 1
+    stand = 'left'
+    flag = True
+    for com in command:
         if com == 'R':
-            que.reverse()
+            if stand == 'left':
+                stand = 'right'
+            else: stand = 'left'
         elif com == 'D':
-            if que:
-                que.popleft()
+            if left <= right:
+                if stand == 'left':
+                    left += 1
+                else: right -= 1
             else:
                 print('error')
                 flag = False
                 break
-        idx += 1
+    # print(stand, left, right)
     if flag:
-        print(list(que))
+        print('[', end='')
+        temp_list = []
+        if stand == 'left':
+            temp_list = list(que)[left:right + 1]
+            # print(list(que)[left:right + 1])
+        else:
+            if left == 0:
+                temp_list = list(que)[right::-1]
+                # print(list(que)[right::-1])
+            else:
+                temp_list = list(que)[right:left - 1:-1]
+                # print(list(que)[right:left - 1:-1])
+        for idx in range(len(temp_list)):
+            print(temp_list[idx], end='')
+            if idx != len(temp_list) - 1:
+                print(',', end='')
+        print(']')
+
+
+# 시간 초과 실패
+# for _ in range(int(sys.stdin.readline())):
+#     command = sys.stdin.readline()[:-1]
+#     n = int(sys.stdin.readline())
+#     AC_list = []
+#     list_num = sys.stdin.readline()[1:-2]
+#     if len(list_num) > 0:
+#         AC_list = list(map(int, list_num.split(',')))
+#     que = deque(AC_list)
+#     flag = True
+#     idx = 0
+#     while idx < len(command):
+#         com = command[idx]
+#         if idx + 1 < len(command) and com == 'R' and command[idx + 1] == 'R':
+#             idx += 1
+#             continue
+#
+#         if com == 'R':
+#             que.reverse()
+#         elif com == 'D':
+#             if que:
+#                 que.popleft()
+#             else:
+#                 print('error')
+#                 flag = False
+#                 break
+#         idx += 1
+#     if flag:
+#         print(list(que))

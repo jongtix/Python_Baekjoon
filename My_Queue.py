@@ -1,7 +1,7 @@
 from collections import deque
 
 
-class Queue:
+class MyQueue:
     queue = deque()
 
     def __init__(self):

@@ -1,4 +1,4 @@
-class Stack:
+class MyStack:
     stack = []
 
     def __init__(self):

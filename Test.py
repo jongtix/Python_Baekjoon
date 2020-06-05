@@ -19,4 +19,5 @@ import copy, operator
 # print(new_list4)
 # print(new_list5)
 
-print(tuple(map(operator.add, (1, 1), (2, 3))))
+# print(tuple(map(operator.add, (1, 1), (2, 3))))
+print([1,2,3,4][1::-1])
