@@ -32,33 +32,33 @@ import sys
 # def cut(org_list, s):
 #     global length
 #     size = len(org_list)
-# 
+#
 #     if org_list == [[0 for j in range(size)] for i in range(size)]:
-#         if length == 2 and size != 1: s += '('
-#         s += '0'
-#         if length == 2 and size != 1: s += ')'
-#         return s
+#         # if length == 2 and size != 1: s += '('
+#         # s += '0'
+#         # if length == 2 and size != 1: s += ')'
+#         return '0'
 #     elif org_list == [[1 for j in range(size)] for i in range(size)]:
-#         if length == 2 and size != 1: s += '('
-#         s += '1'
-#         if length == 2 and size != 1: s += ')'
+#         # if length == 2 and size != 1: s += '('
+#         # s += '1'
+#         # if length == 2 and size != 1: s += ')'
+#         return '1'
+#     else:
+#         new_list1 = [[org_list[i][j] for j in range(0, size // 2)] for i in range(0, size // 2)]
+#         new_list2 = [[org_list[i][j] for j in range(size // 2, size)] for i in range(0, size // 2)]
+#         new_list3 = [[org_list[i][j] for j in range(0, size // 2)] for i in range(size // 2, size)]
+#         new_list4 = [[org_list[i][j] for j in range(size // 2, size)] for i in range(size // 2, size)]
+#
+#         s += '('
+#         s += cut(new_list1, '')
+#         s += cut(new_list2, '')
+#         s += cut(new_list3, '')
+#         s += cut(new_list4, '')
+#         s += ')'
+#
 #         return s
-# 
-#     new_list1 = [[org_list[i][j] for j in range(0, size // 2)] for i in range(0, size // 2)]
-#     new_list2 = [[org_list[i][j] for j in range(size // 2, size)] for i in range(0, size // 2)]
-#     new_list3 = [[org_list[i][j] for j in range(0, size // 2)] for i in range(size // 2, size)]
-#     new_list4 = [[org_list[i][j] for j in range(size // 2, size)] for i in range(size // 2, size)]
-# 
-#     s += '('
-#     s += cut(new_list1, '')
-#     s += cut(new_list2, '')
-#     s += cut(new_list3, '')
-#     s += cut(new_list4, '')
-#     s += ')'
-# 
-#     return s
-# 
-# 
+#
+#
 # org_list = []
 # length = int(sys.stdin.readline())
 # for _ in range(length):
