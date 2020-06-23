@@ -61,13 +61,13 @@ import sys
 #         result = 0
 #     return cut
 
-
-K, N = map(int, sys.stdin.readline()[:-1].split(' '))
-org_line = []
-for _ in range(K):
-    org_line.append(int(sys.stdin.readline()))
-org_line.sort()
-if K >= N:
-    print(org_line[-1])
-else:
-    print(solution(org_line, N))
+#
+# K, N = map(int, sys.stdin.readline()[:-1].split(' '))
+# org_line = []
+# for _ in range(K):
+#     org_line.append(int(sys.stdin.readline()))
+# org_line.sort()
+# if K >= N:
+#     print(org_line[-1])
+# else:
+#     print(solution(org_line, N))
