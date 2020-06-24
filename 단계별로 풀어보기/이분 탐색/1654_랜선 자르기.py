@@ -23,22 +23,21 @@
 import sys
 
 # 47%에서 틀렸습니다
-# def solution(org_line, N):
-#     left = 0
-#     right = org_line[-1]
-#     pivot = 0
-#     while True:
-#         cnt = 0
-#         pivot = left + (right - left) // 2
-#         for line in org_line:
-#             cnt += line // pivot
-#         if cnt < N:
-#             if right == pivot: break
-#             right = pivot
-#         else:
-#             if left == pivot: break
-#             left = pivot
-#     return pivot
+def solution(org_line, N):
+    maximum = 0
+    left = 0
+    right = org_line[-1]
+    while left <= right:
+        cnt = 0
+        pivot = left + (right - left) // 2
+        for line in org_line:
+            cnt += line // pivot
+        if cnt < N:
+            right = pivot - 1
+        else:
+            if pivot > maximum: maximum = pivot
+            left = pivot + 1
+    return maximum
 
 
 # 시간 초과 실패
@@ -61,13 +60,13 @@ import sys
 #         result = 0
 #     return cut
 
-#
-# K, N = map(int, sys.stdin.readline()[:-1].split(' '))
-# org_line = []
-# for _ in range(K):
-#     org_line.append(int(sys.stdin.readline()))
-# org_line.sort()
-# if K >= N:
-#     print(org_line[-1])
-# else:
-#     print(solution(org_line, N))
+
+K, N = map(int, sys.stdin.readline()[:-1].split(' '))
+org_line = []
+for _ in range(K):
+    org_line.append(int(sys.stdin.readline()))
+org_line.sort()
+if K >= N:
+    print(org_line[-1])
+else:
+    print(solution(org_line, N))
