@@ -36,10 +36,11 @@
 # 1
 # 0
 # 0
-import sys
-from collections import deque
+import sys, heapq
 
-max_heap = deque()
+
+max_heap = []
+
 N = int(sys.stdin.readline())
 for _ in range(N):
     command = int(sys.stdin.readline())
@@ -47,6 +48,6 @@ for _ in range(N):
         if len(max_heap) <= 0:
             print(0)
         else:
-            print(max_heap.popleft())
+            print(heapq.heappop(max_heap)[1])
     elif command > 0:
-        max_heap.append(command)
+        heapq.heappush(max_heap, (-command, command))
