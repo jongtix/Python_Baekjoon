@@ -27,21 +27,18 @@
 # 2
 # 2
 # 5
-import sys, heapq
+import sys, heapq, copy
 
 
-mid_heap = []
-for _ in range(int(sys.stdin.readline())):
-    command = int(sys.stdin.readline())
-    heapq.heappush(mid_heap, command)
-    # for _ in range(len(mid_heap) // 2):
-
-    print(mid_heap)
+# 시간 초과 실패
+# mid_heap = []
+# for _ in range(int(sys.stdin.readline())):
+#     command = int(sys.stdin.readline())
+#     heapq.heappush(mid_heap, command)
+#     temp = copy.copy(mid_heap)
+#     # print(temp)
+#     for _ in range((len(mid_heap) - 1) // 2):
+#         heapq.heappop(temp)
+#     print(heapq.heappop(temp))
     # print((heapq.nsmallest(len(mid_heap) // 2, mid_heap)))
     # print(mid_heap[len(mid_heap) // 2])
-# print(heapq.heappop(mid_heap))
-# print(heapq.heappop(mid_heap))
-# print(heapq.heappop(mid_heap))
-# print(heapq.heappop(mid_heap))
-# print(heapq.heappop(mid_heap))
-# print(heapq.heappop(mid_heap))

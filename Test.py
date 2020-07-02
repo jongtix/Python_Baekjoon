@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import copy, operator
 
 # v_list = [[False for _ in range(9)] for _ in range(9)]
