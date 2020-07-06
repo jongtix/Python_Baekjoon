@@ -21,4 +21,10 @@ import copy, operator
 # print(new_list5)
 
 # print(tuple(map(operator.add, (1, 1), (2, 3))))
-print([1,2,3,4][1::-1])
+# print([1,2,3,4][1::-1])
+
+count = [7, 8, 9]
+print(*count, sep='\n')
+print('\n'.join(str(cnt) for cnt in count))
+for cnt in count:
+    print(cnt)

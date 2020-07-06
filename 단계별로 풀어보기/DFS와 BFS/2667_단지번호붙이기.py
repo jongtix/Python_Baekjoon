@@ -34,13 +34,37 @@ start = (0, 0)
 for i in range(N):
     graph[i] = list(map(int, list(sys.stdin.readline()[:-1])))
     start = (i, graph[i].index(1))
-print(graph)
-print(start)
+# print(graph)
+# print(start)
 visited = [[False for _ in range(N)] for _ in range(N)]
 
 
 stack = []
+total = []
+count = []
 for i in range(len(graph)):
     for j in range(len(graph[i])):
+        result = []
         if graph[i][j] == 1 and not visited[i][j]:
             stack.append((i, j))
+
+            while stack:
+                x, y = map(int, stack.pop())
+                # print(next_point)
+                # x = int(next_point[0]), y = next_point[1]
+                if not visited[x][y]:
+                    result.append((x, y))
+                    visited[x][y] = True
+                if x > 0 and graph[x - 1][y] == 1 and not visited[x - 1][y]: stack.append((x - 1, y))
+                if x < len(graph) - 1 and graph[x + 1][y] == 1 and not visited[x + 1][y]: stack.append((x + 1, y))
+                if y > 0 and graph[x][y - 1] == 1 and not visited[x][y - 1]: stack.append((x, y - 1))
+                if y < len(graph) - 1 and graph[x][y + 1] == 1 and not visited[x][y + 1]: stack.append((x, y + 1))
+        if result:
+            count.append(len(result))
+            total.append(result)
+print(len(total))
+count.sort()
+# print(*count, sep='\n')
+# print('\n'.join(str(cnt) for cnt in count))
+for i in count:
+    print(i)
