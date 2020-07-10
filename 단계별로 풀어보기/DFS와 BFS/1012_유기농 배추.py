@@ -59,6 +59,44 @@
 # 예제 출력 2
 # 2
 import sys
+
+# 런타임 에러 실패
+# sys.setrecursionlimit(1000000)
+# for _ in range(int(sys.stdin.readline())):
+#     M, N, K = map(int, sys.stdin.readline()[:-1].split())
+#     graph = [[0 for _ in range(M)] for _ in range(N)]
+#     visited = [[False for _ in range(M)] for _ in range(N)]
+#     for _ in range(K):
+#         temp_y, temp_x = map(int, sys.stdin.readline()[:-1].split())
+#         graph[temp_x][temp_y] = 1
+#
+#     cnt = 0
+#     for xy in range(M * N):
+#         stack = []
+#
+#         x = xy // M
+#         y = xy % M
+#
+#         sub_x = [1, -1, 0, 0]
+#         sub_y = [0, 0, 1, -1]
+#
+#         if graph[x][y] and not visited[x][y]:
+#             cnt += 1
+#             stack.append((x, y))
+#             visited[x][y] = True
+#
+#             while stack:
+#                 next_x, next_y = map(int, stack.pop())
+#
+#                 for i in range(4):
+#                     if 0 <= next_x + sub_x[i] < N\
+#                             and 0 <= next_y + sub_y[i] < M\
+#                             and graph[next_x + sub_x[i]][next_y + sub_y[i]]\
+#                             and not visited[next_x + sub_x[i]][next_y + sub_y[i]]:
+#                         stack.append((next_x + sub_x[i], next_y + sub_y[i]))
+#                         visited[next_x + sub_x[i]][next_y + sub_y[i]] = True
+#     print(cnt)
+
 # 런타임 에러 실패
 # sys.setrecursionlimit(1000000)
 # T = int(sys.stdin.readline())

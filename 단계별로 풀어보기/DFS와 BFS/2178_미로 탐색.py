@@ -53,27 +53,68 @@ import sys
 
 N, M = map(int, sys.stdin.readline()[:-1].split(' '))
 graph = []
+visited = [[0 for _ in range(M)] for _ in range(N)]
 for _ in range(N):
     graph.append(list(map(int, list(sys.stdin.readline()[:-1]))))
-visited = [[False for _ in range(M)] for _ in range(N)]
-cnt = 0
 
+stack = []
+stack.append((0, 0))
+visited[0][0] += 1
 
-def dfs(graph, visited, start):
-    global cnt
-    x, y = map(int, start)
-    cnt += 1
-    if graph[x][y] == 1 and not visited[x][y]:
-        visited[x][y] = True
-    for i in range(2):
-        for j in range(2):
-            print(x + (-1) ** (i + 1))
-            print(y + (-1) ** (j + 1))
-            if (x + (-1) ** (i + 1) >= 0 and x + (-1) ** (i + 1) < N) and (y + (-1) ** (j + 1) >= 0 and y + (-1) ** (j + 1) < M) and graph[x + (-1) * (i + 1)][y + (-1) * (j + 1)] == 1: dfs(graph, visited, (x + (-1) * (i + 1), y + (-1) * (j + 1)))
-    return cnt
+while stack:
+    x, y = map(int, stack.pop())
+    # print(x, y)
+    sub_x = [1, -1, 0, 0]
+    sub_y = [0, 0, 1, -1]
 
+    for i in range(4):
+        if 0 <= x + sub_x[i] < N and 0 <= y + sub_y[i] < M and graph[x + sub_x[i]][y + sub_y[i]] and ((visited[x][y] + 1 < visited[x + sub_x[i]][y + sub_y[i]]) or not visited[x + sub_x[i]][y + sub_y[i]]):
+        # if 0 <= x + sub_x[i] < N and 0 <= y + sub_y[i] < M and graph[x + sub_x[i]][y + sub_y[i]] and (visited[x][y] + 1 < visited[x + sub_x[i]][y + sub_y[i]])
+            visited[x + sub_x[i]][y + sub_y[i]] = visited[x][y] + 1
+            # print((x + sub_x[i], y + sub_y[i]))
+            stack.append((x + sub_x[i], y + sub_y[i]))
 
-print(dfs(graph, visited, (0, 0)))
+# for v in visited:
+#     print(v)
+print(visited[N - 1][M - 1])
+
+# sys.setrecursionlimit(1000000)
+# N, M = map(int, sys.stdin.readline()[:-1].split(' '))
+# graph = []
+# for _ in range(N):
+#     graph.append(list(map(int, list(sys.stdin.readline()[:-1]))))
+# visited = [[0 for _ in range(M)] for _ in range(N)]
+# cnt = 0
+# result = []
+#
+# def dfs(graph, visited, start):
+#     global cnt
+#     # print(start)
+#     x, y = map(int, start)
+#     cnt += 1
+#     if x == N - 1 and y == M - 1: print(cnt)
+#     if graph[x][y] == 1:
+#         if not visited[x][y]:
+#             visited[x][y] += 1
+#             result.append((x, y))
+#         else:
+#             cnt -= 1
+#     flag = False
+#     for i in range(2):
+#         # print(x + (-1) ** (i + 1))
+#         if (x + (-1) ** (i + 1) >= 0 and x + (-1) ** (i + 1) < N) and graph[x + (-1) ** (i + 1)][y] == 1 and not visited[x + (-1) ** (i + 1)][y]:
+#             flag = True
+#             dfs(graph, visited, (x + (-1) ** (i + 1), y))
+#         if (y + (-1) ** (i + 1) >= 0 and y + (-1) ** (i + 1) < M) and graph[x][y + (-1) ** (i + 1)] == 1 and not visited[x][y + (-1) ** (i + 1)]:
+#             flag = True
+#             dfs(graph, visited, (x, y + (-1) ** (i + 1)))
+#     if not flag: result.remove((x, y))
+#     return cnt
+#
+#
+# dfs(graph, visited, (0, 0))
+# print(result)
+# print(visited[N - 1][M - 1])
 
 # stack = []
 # stack.append((0, 0))
