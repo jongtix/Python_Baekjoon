@@ -32,35 +32,61 @@
 # -1
 import sys, copy
 
+# 시간 초과 실패
 # N, M = map(int, sys.stdin.readline().split())
 # graph = []
 # visited = [[0 for _ in range(M)] for _ in range(N)]
 # for _ in range(N):
-#     graph.append(list(map(int, list(sys.stdin.readline()))))
+#     graph.append(list(map(int, sys.stdin.readline()[:-1])))
 #
+# # print(graph)
 # sub_x = [1, -1, 0, 0]
 # sub_y = [0, 0, 1, -1]
+# visited[0][0] = 1
 #
 #
-# def bfs(graph, visited, position, move_cnt, broken_wall):
-#     if position == (N - 1, M - 1): return
+# def bfs(graph, visited, position, broken_wall):
+#     if position == (N - 1, M - 1): return visited
+#     cur_x, cur_y = map(int, position)
 #     for i in range(4):
-#         if 0 <= cur_x + sub_x[i] < N and 0 <= cur_y + sub_y[i] < M:
-#             if broken_wall < 1:
+#         if 0 <= cur_x + sub_x[i] < N and 0 <= cur_y + sub_y[i] < M and (not visited[cur_x + sub_x[i]][cur_y + sub_y[i]] or visited[cur_x + sub_x[i]][cur_y + sub_y[i]] >= visited[cur_x][cur_y] + 1):
+#             # print(cur_x + sub_x[i], cur_y + sub_y[i])
+#             if graph[cur_x + sub_x[i]][cur_y + sub_y[i]] == 1 and broken_wall < 1:
 #                 temp_graph = copy.copy(graph)
+#                 temp_graph[cur_x + sub_x[i]][cur_y + sub_y[i]] = 0
+#                 temp_visited = copy.copy(visited)
+#                 temp_visited[cur_x + sub_x[i]][cur_y + sub_y[i]] = temp_visited[cur_x][cur_y] + 1
+#                 bfs(temp_graph, temp_visited, (cur_x + sub_x[i], cur_y + sub_y[i]), broken_wall + 1)
+#             elif graph[cur_x + sub_x[i]][cur_y + sub_y[i]] == 0:
+#                 # temp_visited = copy.copy(visited)
+#                 # temp_visited[cur_x + sub_x[i]][cur_y + sub_y[i]] = temp_visited[cur_x][cur_y] + 1
+#                 visited[cur_x + sub_x[i]][cur_y + sub_y[i]] = visited[cur_x][cur_y] + 1
+#                 # bfs(copy.copy(graph), temp_visited, (cur_x + sub_x[i], cur_y + sub_y[i]), broken_wall)
+#                 bfs(graph, visited, (cur_x + sub_x[i], cur_y + sub_y[i]), broken_wall)
 #
 #
+# bfs(graph, visited, (0, 0), 0)
+# # for v in visited:
+# #     print(v)
+# if visited[N - 1][M - 1] == 0:
+#     print(-1)
+# else:
+#     print(visited[N - 1][M - 1])
+
+
 # stack = []
 # stack.append((0, 0, 0, 0))
 # if not N - 1 == 0 and not M - 1 == 0:
 #     while stack:
 #         cur_x, cur_y, move_cnt, broken_wall = map(int, stack.pop())
 #         for i in range(4):
-#             if 0 <= cur_x + sub_x[i] < N and 0 <= cur_y + sub_y[i] < M:
-#                 if broken_wall < 1:
-#                     graph
+#             if 0 <= cur_x + sub_x[i] < N and 0 <= cur_y + sub_y[i] < M and (not visited[cur_x + sub_x[i]][cur_y + sub_y[i]] or visited[cur_x + sub_x[i]][cur_y + sub_y[i]] > move_cnt + 1):
+#                 if graph[cur_x + sub_x[i]][cur_y + sub_y[i]] == 1 and broken_wall < 1:
+#                     graph[cur_x + sub_x[i]][cur_y + sub_y[i]] = 0
+#                     broken_wall += 1
+#                     bfs(graph, )
+#                 else:
 #
-#                 graph[cur_x + sub_x[i]][cur_y + sub_y[i]] == 0 and (not visited[cur_x + sub_x[i]][cur_y + sub_y[i]] or visited[cur_x + sub_x[i]][cur_y + sub_y[i]] > move_cnt + 1):
 #                 stack.append((cur_x + sub_x[i], cur_y + sub_y[i], move_cnt + 1, broken_wall))
 #     print(visited[N - 1][M - 1])
 # else:
