@@ -21,7 +21,7 @@
 # 2 3
 # 예제 출력 1
 # 7
-import sys, heapq
+import sys, heapq, copy
 
 N, E = map(int, sys.stdin.readline().split())
 graph = [[] for _ in range(N + 1)]
@@ -36,50 +36,54 @@ list1 = [1, v1, v2, N]
 list2 = [1, v2, v1, N]
 
 
-def find_root(start: int, end: int):
-    que = []
-    dist = ['INF' for _ in range(N + 1)]
-    heapq.heappush(que, (0, start))
-    dist[start] = 0
-    while que:
-        weight, cur_point = heapq.heappop(que)
-        for value, next_point in graph[cur_point]:
-            if dist[next_point] == 'INF' or dist[next_point] > weight + value:
-                heapq.heappush(que, (weight + value, next_point))
-                dist[next_point] = weight + value
-
-    if dist[end] == 'INF':
-        return 0
-    else:
-        return dist[end]
-
-
-total_weight = 0
-for i in range(3):
-    result = find_root(list1[i], list1[i + 1])
-    # print(result)
-    if result:
-        total_weight += result
-    else:
-        total_weight = sys.maxsize
-        break
-# print(total_weight)
-
-total_weight2 = 0
-for i in range(3):
-    result = find_root(list2[i], list2[i + 1])
-    # print(result)
-    if result:
-        total_weight2 += result
-    else:
-        total_weight2 = sys.maxsize
-        break
-# print(total_weight2)
-
-if total_weight == sys.maxsize and total_weight2 == sys.maxsize:
-    print(-1)
-else:
-    print(min(total_weight, total_weight2))
+# 틀렸습니다 실패
+# def find_root(start: int, end: int):
+#     que = []
+#     dist = ['INF' for _ in range(N + 1)]
+#     heapq.heappush(que, (0, start))
+#     dist[start] = 0
+#     while que:
+#         weight, cur_point = heapq.heappop(que)
+#         for value, next_point in graph[cur_point]:
+#             if dist[next_point] == 'INF' or dist[next_point] > weight + value:
+#                 heapq.heappush(que, (weight + value, next_point))
+#                 dist[next_point] = weight + value
+#
+#     if dist[end] == 'INF':
+#         return 0
+#     else:
+#         return dist[end]
+#
+#
+# flag1 = False
+# flag2 = False
+# total_weight = 0
+# for i in range(3):
+#     result = find_root(list1[i], list1[i + 1])
+#     # print(result)
+#     if result:
+#         total_weight += result
+#     else:
+#         flag1 = True
+#         total_weight = sys.maxsize
+#         break
+# # print(total_weight)
+# print(sys.maxsize + 1)
+# total_weight2 = 0
+# for i in range(3):
+#     result = find_root(list2[i], list2[i + 1])
+#     # print(result)
+#     if result:
+#         total_weight2 += result
+#     else:
+#         flag2 = True
+#         break
+# # print(total_weight2)
+# print(graph)
+# if flag1 and flag2:
+#     print(-1)
+# else:
+#     print(min(total_weight, total_weight2))
 
 # 성공
 # flag = True
