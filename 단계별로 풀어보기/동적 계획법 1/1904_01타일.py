@@ -1,4 +1,4 @@
-# 점화식의 값을 특정 상수로 나눈 나머지를 구하는 문제 #
+# 점화식의 값을 특정 상수로 나눈 나머지를 구하는 문제
 # 문제
 # 지원이에게 2진 수열을 가르쳐 주기 위해, 지원이 아버지는 그에게 타일들을 선물해주셨다. 그리고 이 각각의 타일들은 0 또는 1이 쓰여 있는 낱장의 타일들이다.
 #
@@ -18,6 +18,30 @@
 # 4
 # 예제 출력 1
 # 5
+import sys
+
+
+def combination(n, r):
+    if n == r or n == 0 or r == 0:
+        return 1
+    else:
+        return combination(n - 1, r - 1) + combination(n - 1, r)
+
+
+def solution(N):
+    if N == 1:
+        return 1
+    elif N == 2:
+        return 2
+    else:
+        for i in range(2, N, 2):
+            return solution(N - i)
+
+
+N = int(sys.stdin.readline())
+print(solution(N))
+
+
 # def tile(N: int):
 #     if N == 1:
 #         return 1

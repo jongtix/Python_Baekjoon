@@ -60,4 +60,10 @@ for i in range(n):
                 heapq.heappush(que, (cur_cost + next_cost, next_point))
 # print(cost)
 for c in cost[1:]:
-    print(' '.join(map(str, c[1:])))
+    for value in c[1:]:
+        if value == math.inf:
+            print(0, end=' ')
+        else:
+            print(value, end=' ')
+    print()
+    # print(' '.join(map(str, c[1:])))
