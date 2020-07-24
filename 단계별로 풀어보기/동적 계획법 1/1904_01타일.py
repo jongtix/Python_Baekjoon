@@ -20,26 +20,51 @@
 # 5
 import sys
 
-
-def combination(n, r):
-    if n == r or n == 0 or r == 0:
-        return 1
-    else:
-        return combination(n - 1, r - 1) + combination(n - 1, r)
-
-
-def solution(N):
-    if N == 1:
-        return 1
-    elif N == 2:
-        return 2
-    else:
-        for i in range(2, N, 2):
-            return solution(N - i)
-
-
 N = int(sys.stdin.readline())
-print(solution(N))
+result = [0] * 1000001
+result[1] = 1
+result[2] = 2
+for i in range(3, N + 1):
+    result[i] = (result[i - 2] + result[i - 1]) % 15746
+print(result)
+print(result[N])
+
+
+# 런타임 에러 실패
+# def solution(N):
+#     if N == 1:
+#         return 1
+#     elif N == 2:
+#         return 2
+#     else:
+#         return solution(N - 1) + solution(N - 2)
+#
+#
+# print(solution(int(sys.stdin.readline())))
+
+# 시간 초과 실패
+# sys.setrecursionlimit(1000000)
+#
+#
+# def combination(n, r):
+#     if n == r or n == 0 or r == 0:
+#         return 1
+#     else:
+#         return combination(n - 1, r - 1) + combination(n - 1, r)
+#
+#
+# def solution(N):
+#     if N == 1:
+#         return 1
+#     else:
+#         result = 0
+#         for i in range(N // 2 + 1):
+#             result += combination(N - i, N - (i * 2))
+#         return result
+#
+#
+# N = int(sys.stdin.readline())
+# print(solution(N))
 
 
 # def tile(N: int):

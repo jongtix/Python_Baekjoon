@@ -1,3 +1,4 @@
+
 # 피보나치 수와 비슷한 규칙을 찾아 동적 계획법으로 푸는 문제
 # 문제
 # 오른쪽 그림과 같이 삼각형이 나선 모양으로 놓여져 있다. 첫 삼각형은 정삼각형으로 변의 길이는 1이다. 그 다음에는 다음과 같은 과정으로 정삼각형을 계속 추가한다. 나선에서 가장 긴 변의 길이를 k라 했을 때, 그 변에 길이가 k인 정삼각형을 추가한다.
@@ -19,18 +20,26 @@
 # 예제 출력 1
 # 3
 # 16
+import sys
 
+p = [0] * 101
+p[1], p[2], p[3], p[4], p[5] = 1, 1, 1, 2, 2
+for i in range(6, 101):
+    p[i] = p[i - 1] + p[i - 5]
+
+for _ in range(int(sys.stdin.readline())):
+    print(p[int(sys.stdin.readline())])
 
 # 시간 초과 실패
-def P(N):
-    cache = [1, 1, 1, 2, 2, 3, 4, 5, 7, 9] + [0 for _ in range(90)]
-    if cache[N - 1] > 0:
-        return cache[N - 1]
-    else:
-        cache[N - 1] = P(N - 1) + P(N - 5)
-        return cache[N - 1]
-
-
-for _ in range(int(input())):
-    print(P(int(input())))
+# def P(N):
+#     cache = [1, 1, 1, 2, 2, 3, 4, 5, 7, 9] + [0 for _ in range(90)]
+#     if cache[N - 1] > 0:
+#         return cache[N - 1]
+#     else:
+#         cache[N - 1] = P(N - 1) + P(N - 5)
+#         return cache[N - 1]
+#
+#
+# for _ in range(int(input())):
+#     print(P(int(input())))
 # 시간 초과 실패
