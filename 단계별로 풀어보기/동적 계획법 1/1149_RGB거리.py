@@ -23,41 +23,54 @@
 import sys
 
 N = int(sys.stdin.readline())
-cost = [tuple() for _ in range(N)]
-start = 0
-min_cost = (0, 1001)
-rgb_cost = []
-for i in range(N):
-    rgb_cost.append(list(zip([0, 1, 2], map(int, sys.stdin.readline()[:-1].split()))))
-    min_temp = min(rgb_cost[i], key=lambda x: x[1])
-    if min_cost[1] > min_temp[1]:
-        start = i
-        min_cost = min_temp
+cost = [[] for _ in range(N + 1)]
+cost[0] = [0, 0, 0]
+for i in range(N + 1):
+    if i != 0:
+        rgb_cost = list(map(int, sys.stdin.readline()[:-1].split()))
+        cost[i].append(min(cost[i - 1][1], cost[i - 1][2]) + rgb_cost[0])
+        cost[i].append(min(cost[i - 1][0], cost[i - 1][2]) + rgb_cost[1])
+        cost[i].append(min(cost[i - 1][0], cost[i - 1][1]) + rgb_cost[2])
 
-cost[start] = min_cost
-left = start - 2
-right = start + 2
-while left >= 0:
-    left -= 2
-    cost[left] = min(rgb_cost[left], key=lambda x: x[1])
+print(min(cost[N]))
 
-while right < N:
-    right += 2
-    cost[right] = min(rgb_cost[right], key=lambda x: x[1])
-# for left in range(start, -1, -2):
+# 런타임 에러 실패
+# N = int(sys.stdin.readline())
+# cost = [tuple() for _ in range(N)]
+# start = 0
+# min_cost = (0, 1001)
+# rgb_cost = []
+# for i in range(N):
+#     rgb_cost.append(list(zip([0, 1, 2], map(int, sys.stdin.readline()[:-1].split()))))
+#     min_temp = min(rgb_cost[i], key=lambda x: x[1])
+#     if min_cost[1] > min_temp[1]:
+#         start = i
+#         min_cost = min_temp
+#
+# cost[start] = min_cost
+# left = start - 2
+# right = start + 2
+# while left >= 0:
+#     left -= 2
 #     cost[left] = min(rgb_cost[left], key=lambda x: x[1])
-# for right in range(start, N + 1, 2):
+#
+# while right < N:
+#     right += 2
 #     cost[right] = min(rgb_cost[right], key=lambda x: x[1])
-
-for i in range(N):
-    if not cost[i]:
-        if i - 1 >= 0:
-            left_color = cost[i - 1][0]
-            rgb_cost[i][left_color] = (0, 1001)
-        if i + 1 < N:
-            right_color = cost[i + 1][0]
-            rgb_cost[i][right_color] = (0, 1001)
-
-        cost[i] = min(rgb_cost[i], key=lambda x: x[1])
-
-print(sum(x[1] for x in cost))
+# # for left in range(start, -1, -2):
+# #     cost[left] = min(rgb_cost[left], key=lambda x: x[1])
+# # for right in range(start, N + 1, 2):
+# #     cost[right] = min(rgb_cost[right], key=lambda x: x[1])
+#
+# for i in range(N):
+#     if not cost[i]:
+#         if i - 1 >= 0:
+#             left_color = cost[i - 1][0]
+#             rgb_cost[i][left_color] = (0, 1001)
+#         if i + 1 < N:
+#             right_color = cost[i + 1][0]
+#             rgb_cost[i][right_color] = (0, 1001)
+#
+#         cost[i] = min(rgb_cost[i], key=lambda x: x[1])
+#
+# print(sum(x[1] for x in cost))

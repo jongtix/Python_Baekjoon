@@ -23,8 +23,13 @@ import copy, operator
 # print(tuple(map(operator.add, (1, 1), (2, 3))))
 # print([1,2,3,4][1::-1])
 
-count = [7, 8, 9]
-print(*count, sep='\n')
-print('\n'.join(str(cnt) for cnt in count))
-for cnt in count:
-    print(cnt)
+# count = [7, 8, 9]
+# print(*count, sep='\n')
+# print('\n'.join(str(cnt) for cnt in count))
+# for cnt in count:
+#     print(cnt)
+
+for i in range(50):
+    for j in range(i + 1):
+        print(j, end=' ')
+    print()
