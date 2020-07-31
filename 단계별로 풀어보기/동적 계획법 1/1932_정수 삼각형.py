@@ -28,6 +28,21 @@
 # 30
 import sys
 
+n = int(sys.stdin.readline())
+sum_list = [0]
+for idx in range(n):
+    location = list(map(int, sys.stdin.readline()[:-1].split()))
+    temp = []
+    for jdx, value in enumerate(location):
+        if jdx == 0:
+            temp.append(value + sum_list[jdx])
+        elif jdx == idx:
+            temp.append(value + sum_list[jdx - 1])
+        else:
+            temp.append(value + max(sum_list[jdx - 1], sum_list[jdx]))
+    sum_list = temp
+print(max(sum_list))
+
 # 메모리 초과 실패
 # n = int(sys.stdin.readline())
 # location = [[] for _ in range(n)]
