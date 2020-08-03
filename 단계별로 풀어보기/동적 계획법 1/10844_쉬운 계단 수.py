@@ -24,6 +24,35 @@
 # 17
 import sys
 
+append_number = {0: [1], 1: [0, 2], 2: [1, 3], 3: [2, 4], 4: [3, 5], 5: [4, 6], 6: [5, 7], 7: [6, 8], 8: [7, 9], 9: [8]}
+# append_number = [1, 2, 2, 2, 2, 2, 2, 2, 2, 1]
+count_number = [1 for _ in range(10)] # 0 ~ 9 까지 숫자의 개수
+count_number[0] = 0
+N = int(sys.stdin.readline())
+for i in range(1, N):
+    temp = [0 for _ in range(10)]
+    for idx in range(10):
+        for number in append_number[idx]:
+            temp[number] += count_number[idx] * 1
+    count_number = temp
+# print(count_number)
+print(sum(count_number) % 1000000000)
+
+# 틀렸습니다 실패
+# append_number = {0: [1], 1: [0, 2], 2: [1, 3], 3: [2, 4], 4: [3, 5], 5: [4, 6], 6: [5, 7], 7: [6, 8], 8: [7, 9], 9: [8]}
+# # append_number = [1, 2, 2, 2, 2, 2, 2, 2, 2, 1]
+# count_number = [1 for _ in range(10)] # 0 ~ 9 까지 숫자의 개수
+# count_number[0] = 0
+# N = int(sys.stdin.readline())
+# for i in range(1, N):
+#     temp = [0 for _ in range(10)]
+#     for idx in range(10):
+#         for number in append_number[idx]:
+#             temp[number] += count_number[idx] * 1
+#     count_number = temp
+# # print(count_number)
+# print(sum(count_number))
+
 # 메모리 초과 실패
 # N = int(sys.stdin.readline())
 # numbers = [i + 1 for i in range(9)]
