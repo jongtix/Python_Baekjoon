@@ -28,7 +28,31 @@
 # 3
 import sys
 
+N = int(sys.stdin.readline())
+poles = []
+maximum = []
+for _ in range(N):
+    A, B = map(int, sys.stdin.readline()[:-1].split())
+    poles.append([A, B, abs(A - B)])
+    maximum.append(1)
+
+poles.sort()
+
+for idx, pole in enumerate(poles):
+    for jdx in range(idx):
+        if pole[1] > poles[jdx][1] and maximum[idx] < maximum[jdx] + 1: maximum[idx] = maximum[jdx] + 1
+# print(maximum)
+print(N - max(maximum))
+
+
 # 틀렸습니다 실패
+# 반례
+# 5
+# 1 3
+# 2 1
+# 3 5
+# 4 2
+# 5 4
 # N = int(sys.stdin.readline())
 # poles = []
 # for _ in range(N):
@@ -36,7 +60,7 @@ import sys
 #
 # pole_count = 0
 #
-# while True:
+# while poles:
 #     mix_count = []
 #     for pole in poles:
 #         count = 0
@@ -48,6 +72,5 @@ import sys
 #     if max_pole[0] == 0: break
 #     poles.remove(max_pole[1])
 #     pole_count += 1
-#     if not poles: break
 #
 # print(pole_count)
