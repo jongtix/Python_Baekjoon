@@ -29,7 +29,10 @@ import copy, operator
 # for cnt in count:
 #     print(cnt)
 
-for i in range(50):
-    for j in range(i + 1):
-        print(j, end=' ')
-    print()
+# for i in range(50):
+#     for j in range(i + 1):
+#         print(j, end=' ')
+#     print()
+
+# print(bool(set(range(3, 5)) & set(range(2, 6))))
+print(type(''.join(['6', '5'])))
