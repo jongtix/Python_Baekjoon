@@ -28,6 +28,23 @@
 # ((110(0101))(0010)1(0001))
 import sys
 
+# N = int(sys.stdin.readline())
+# points = []
+# for _ in range(N):
+#     points.append(list(sys.stdin.readline()[:-1]))
+#
+#
+# def cut(org_list, start_point):
+#     if 0 not in (x for x in org_list):
+#         return '1'
+#     elif 1 not in (x for x in org_list):
+#         return '0'
+#     else:
+#         start_x, start_y = start_point
+#         s = '('
+#         s += cut(org_list[start_x:])
+
+
 # 런타임 에러 실패
 # def cut(org_list, s):
 #     global length

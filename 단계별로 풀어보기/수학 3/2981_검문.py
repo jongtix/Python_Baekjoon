@@ -27,29 +27,60 @@
 # 2 4
 import sys
 
-N = int(sys.stdin.readline())
-numbers = []
-for _ in range(N):
-    numbers.append(int(sys.stdin.readline()))
+# 런타임 에러 실패
+# sys.setrecursionlimit(10000)
+# N = int(sys.stdin.readline())
+# numbers = [int(sys.stdin.readline()) for _ in range(N)]
+#
+#
+# def gcd(x, y):
+#     r = x % y
+#     if r == 0:
+#         return y
+#     else:
+#         return gcd(r, y)
+#
+#
+# result = set()
+# while numbers:
+#     numbers.sort()
+#     temp = []
+#     if len(numbers) >= 2:
+#         result.add(gcd(numbers[1], numbers[0]))
+#         for idx in range(len(numbers) - 1):
+#             temp.append(numbers[idx + 1] - numbers[idx])
+#     numbers = temp
+#
+# print(' '.join(list(result)))
 
 
-def gcd(x, y):
-    if y == 0:
-        return x
-    else:
-        return gcd(min(x, y), max(x, y) % min(x, y))
-
-
-result = set()
-while numbers:
-    m = gcd(numbers[-1], numbers[0])
-    if m != 1: result.add(m)
-    numbers = [x - min(numbers) for x in numbers[1:]]
-    numbers.sort()
-
-result = list(result)
-result.sort()
-print(' '.join(map(str, result)))
+# 시간 초과 or 메모리 초과 실패
+# sys.setrecursionlimit(10000)
+# N = int(sys.stdin.readline())
+# numbers = []
+# for _ in range(N):
+#     numbers.append(int(sys.stdin.readline()))
+# numbers = [int(sys.stdin.readline()) for _ in range(N)]
+#
+#
+# def gcd(x, y):
+#     r = x % y
+#     if r == 0:
+#         return y
+#     else:
+#         return gcd(r, y)
+#
+#
+# result = set()
+# while numbers:
+#     numbers.sort()
+#     m = gcd(numbers[-1], numbers[0])
+#     if m != 1: result.add(m)
+#     numbers = [x - min(numbers) for x in numbers[1:]]
+#
+# result = list(result)
+# result.sort()
+# print(' '.join(map(str, result)))
 
 # 시간 초과 실패
 # N = int(sys.stdin.readline())
