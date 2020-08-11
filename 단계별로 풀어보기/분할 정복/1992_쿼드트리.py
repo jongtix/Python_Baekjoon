@@ -28,22 +28,34 @@
 # ((110(0101))(0010)1(0001))
 import sys
 
-# N = int(sys.stdin.readline())
-# points = []
-# for _ in range(N):
-#     points.append(list(sys.stdin.readline()[:-1]))
-#
-#
-# def cut(org_list, start_point):
-#     if 0 not in (x for x in org_list):
-#         return '1'
-#     elif 1 not in (x for x in org_list):
-#         return '0'
-#     else:
-#         start_x, start_y = start_point
-#         s = '('
-#         s += cut(org_list[start_x:])
+# 틀렸습니다 실패 100%에서 틀림
+sys.setrecursionlimit(10000)
+N = int(sys.stdin.readline())
+points = []
+for _ in range(N):
+    points.append(list(map(int, list(sys.stdin.readline()[:-1]))))
 
+
+def cut(org_list, s):
+    cnt = 0
+    for temp in org_list:
+        cnt += sum(temp)
+
+    if cnt == 0:
+        return s + '0'
+    elif cnt == len(org_list) ** 2:
+        return s + '1'
+    length = len(org_list) // 2
+    s += '('
+    s = cut([x[:length] for x in org_list[:length]], s)
+    s = cut([x[length:] for x in org_list[:length]], s)
+    s = cut([x[:length] for x in org_list[length:]], s)
+    s = cut([x[length:] for x in org_list[length:]], s)
+    s += ')'
+    return s
+
+
+print(cut(points, ''))
 
 # 런타임 에러 실패
 # def cut(org_list, s):

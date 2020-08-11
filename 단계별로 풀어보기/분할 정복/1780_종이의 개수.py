@@ -29,6 +29,18 @@
 # 11
 import sys
 
+N = int(sys.stdin.readline())
+cnt_zero = 0
+cnt_one = 0
+cnt_minus = 0
+
+
+def cut(org_list, s):
+    size = len(org_list) // 3
+
+    new_list_1 = [x[:size] for x in org_list[:size]]
+
+
 # 런타임 에러 실패
 # def cut(org_list: list, s: str):
 #     global cnt_one, cnt_minus, cnt_zero
