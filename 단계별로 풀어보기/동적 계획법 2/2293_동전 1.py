@@ -17,6 +17,19 @@
 # 5
 # 예제 출력 1
 # 10
-import sys
+import sys, copy
 
 n, k = map(int, sys.stdin.readline()[:-1].split())
+coins = []
+cache = [0 for _ in range(k + 1)]
+
+for _ in range(n):
+    coins.append(int(sys.stdin.readline()))
+
+for coin in coins:
+    temp = copy.copy(cache)
+    for i in range(coin, k + 1):
+        temp[i] = cache[i - coin] + 1
+    cache = temp
+
+    print(cache)
