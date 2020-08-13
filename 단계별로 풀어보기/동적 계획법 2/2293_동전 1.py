@@ -19,6 +19,7 @@
 # 10
 import sys, copy
 
+# 정답 코드
 n, k = map(int, sys.stdin.readline()[:-1].split())
 coins = []
 cache = [0 for _ in range(k + 1)]
@@ -26,10 +27,31 @@ cache = [0 for _ in range(k + 1)]
 for _ in range(n):
     coins.append(int(sys.stdin.readline()))
 
+cache[0] = 1
+# coins.sort()
 for coin in coins:
-    temp = copy.copy(cache)
     for i in range(coin, k + 1):
-        temp[i] = cache[i - coin] + 1
-    cache = temp
+        cache[i] += cache[i - coin]
+    # print(cache)
+print(cache[k])
 
-    print(cache)
+# 내가 작성한 코드
+# n, k = map(int, sys.stdin.readline()[:-1].split())
+# coins = []
+# cache = [0 for _ in range(k + 1)]
+#
+# for _ in range(n):
+#     coins.append(int(sys.stdin.readline()))
+#
+# coins.sort()
+# for idx, coin in enumerate(coins):
+#     if idx == 0:
+#         for i in range(coin, k + 1, coin):
+#             cache[i] += 1
+#     else:
+#         temp = copy.copy(cache)
+#         for i in range(coin, k + 1):
+#             cache[i] = temp[i] + cache[i - coin]
+#             if i == coin: cache[i] += 1
+#     # print(cache)
+# print(cache[k])
