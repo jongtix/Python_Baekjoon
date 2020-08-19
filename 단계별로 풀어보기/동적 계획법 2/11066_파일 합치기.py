@@ -24,16 +24,19 @@
 # 864
 import sys
 
-T = int(sys.stdin.readline())
-for _ in range(T):
-    K = int(sys.stdin.readline())
-    files = list(map(int, sys.stdin.readline()[:-1].split()))
-    first = [sum(files[:idx]) for idx in range(K + 1)]
-    print(first)
-    dp = [[0 * K for _ in range(K)] for _ in range(K)]
-
-    for i in range(K):
-        for j in range(K):
-            for k in range(j):
-                dp[i][j] = min(dp[i][j], dp[i][k] + dp[k + 1][j] + first[k + 1])
-    print(dp[-1][-1])
+# 실패
+# T = int(sys.stdin.readline())
+# for _ in range(T):
+#     K = int(sys.stdin.readline())
+#     files = list(map(int, sys.stdin.readline()[:-1].split()))
+#     file_sum = [sum(files[:f + 1]) for f in range(len(files))]
+#     dp = [[0 for _ in range(K)] for _ in range(K)]
+#     for i in range(K - 1):
+#         dp[i][i + 1] = files[i] + files[i + 1]
+#     print(dp)
+#     for i in range(K):
+#         for j in range(i, K):
+#             for k in range(i, j):
+#                 dp[i][j] = min(dp[i][j], dp[i][k] + dp[k + 1][j]) + file_sum[j]
+#
+#     print(dp)
