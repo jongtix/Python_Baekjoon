@@ -1,3 +1,4 @@
+# 수의 범위가 작다면 카운팅 정렬을 사용하여 더욱 빠르게 정렬할 수 있습니다.
 # 문제
 # N개의 수가 주어졌을 때, 이를 오름차순으로 정렬하는 프로그램을 작성하시오.
 #
@@ -34,23 +35,76 @@
 #############
 ### 미해결 ###
 #############
-
+# 출처: https://blockdmask.tistory.com/177
+# 메모리 초과 실패
 import sys
 
-count_list = [0 for _ in range(10000)]
-N = int(sys.stdin.readline())
-max_number = 0
+
+def swap(number_list, low, high):
+    temp = number_list[low]
+    number_list[low] = number_list[high]
+    number_list[high] = temp
+
+#
+# def get_pivot(number_list, left, right):
+#     pivot = number_list[left]
+#     low = left + 1
+#     high = left
+#
+#     while low <= right:
+#         while number_list[low] < pivot:
+#             high += 1
+#             low += 1
+#         swap(number_list, low, high)
+#     number_list[left] = number_list[low]
+#     number_list[low] = pivot
+#
+#     return low
+
+
+def quick_sort(number_list, left, right):
+    if left >= right: return
+
+    pivot = number_list[left]
+    start = left + 1
+    end = right
+
+    while start < end:
+        while number_list[start] < pivot: start += 1
+        while number_list[end] > pivot: end -= 1
+        if start < end: swap(number_list, start, end)
+    swap(number_list, left, end - 1)
+
+    quick_sort(number_list, left, end - 1)
+    quick_sort(number_list, start, right)
+
+
+N = int(sys.stdin.readline()[:-1])
+number_list = []
 for _ in range(N):
-    number = int(sys.stdin.readline())
-    count_list[number - 1] += 1
-    if max_number < number: max_number = number
+    number_list.append(int(sys.stdin.readline()[:-1]))
+    # print(number_list)
 
+quick_sort(number_list, 0, N - 1)
+for number in number_list:
+    print(number)
 
-for number in range(max_number):
-    for _ in range(count_list[number]):
-        print(number + 1)
-    if max_number == number + 1:
-        break
+# import sys
+#
+# count_list = [0 for _ in range(10000)]
+# N = int(sys.stdin.readline())
+# max_number = 0
+# for _ in range(N):
+#     number = int(sys.stdin.readline())
+#     count_list[number - 1] += 1
+#     if max_number < number: max_number = number
+#
+#
+# for number in range(max_number):
+#     for _ in range(count_list[number]):
+#         print(number + 1)
+#     if max_number == number + 1:
+#         break
 
 
 
