@@ -50,6 +50,30 @@
 # 6
 import sys
 
+sys.setrecursionlimit(10 ** 9)
+N = int(sys.stdin.readline())
+tree = [[] for _ in range(N + 1)]
+for _ in range(N - 1):
+    node1, node2 = map(int, sys.stdin.readline()[:-1].split())
+    tree[node1].append(node2)
+    tree[node2].append(node1)
+
+# print(tree)
+parent = [0 for _ in range(N + 1)]
+parent[1] = 1
+
+
+def dfs(cur_point):
+    for next_point in tree[cur_point]:
+        if parent[next_point] != 0: continue
+        parent[next_point] = cur_point
+        dfs(next_point)
+
+
+dfs(1)
+for p in parent[2:]:
+    print(p)
+
 #
 # class Node:
 #     def __init__(self, data):
