@@ -22,22 +22,33 @@
 # 11
 import sys
 
+# 출처: https://qkqhxla1.tistory.com/748
 V = int(sys.stdin.readline())
 tree = [[] for _ in range(V + 1)]
-visited = [0 for _ in range(V + 1)]
+visited = [-1 for _ in range(V + 1)]
 for _ in range(V):
     args = list(map(int, sys.stdin.readline()[:-1].split()))
     stand = args[0]
-    for i in range(1, len(args) // 2, 2):
+    i = 1
+    while args[i] != -1:
         tree[stand].append((args[i], args[i + 1]))
+        i += 2
 
-print(tree)
+# print(tree)
 
 
-def dfs(cur_point, cur_value, maximum):
+def dfs(cur_point, cur_value):
     for next_point, next_value in tree[cur_point]:
-        if maximum < cur_value + next_value: maximum = cur_value + next_value
-        dfs(next_point, cur_value + next_value, maximum)
+        if visited[next_point] >= 0: continue
+        # if maximum < cur_value + next_value: maximum = cur_value + next_value
+        visited[next_point] = cur_value + next_value
+        dfs(next_point, cur_value + next_value)
 
 
-dfs(1, 0, 0)
+visited[1] = 0
+dfs(1, 0)
+end = visited.index(max(visited))
+visited = [-1 for _ in range(V + 1)]
+visited[end] = 0
+dfs(end, 0)
+print(max(visited))
